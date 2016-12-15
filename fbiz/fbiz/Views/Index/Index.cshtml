@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<section id="to-do" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                <h2 class="section-heading">Produtos</h2>
+                <h3 class="section-subheading text-muted">Todos os produtos</h3>
+            </div>
+            <div class="col-lg-6 text-center" id="categoriaContent">
+                <h2 class="section-heading">Categorias</h2>
+                    <!--Categorias-->
+                    | <a href="javascript:void(0);" onclick="setFilter('0')">Todas</a> | 
+            </div>
+        </div>
+        <div class="row" id="listRes">
+
+            <!-- The Foreach -->
+            <span style="margin:0 auto; width:100%; text-align:center;">Aguarde...</span>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <br />
+
+        
+        <div class="btn btn-xl col-md-12" onclick="loadMore()" id="maisProdutos">
+            Carregar Mais! 
+        </div>
+    </div>
+</section>
+
+<script>
+    var page = 1;
+    var itens = 10;
+    var categoria = @ViewData["id"];
+    function loadMore() {
+        $.ajax({
+            type: "POST",
+            url: "/Index/Listar",
+            dataType: 'json',
+            data: {
+                page: page,
+                itens: itens,
+                categoria: categoria
+            },
+            processData: true,
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    $("#listRes span").html("");
+                    $("#listRes").append(data.html);
+                    page = data.page;
+                    if (parseInt(data.totalItens) < 10) {
+                        $("#maisProdutos").fadeOut();
+                    }
+                    else {
+                        $("#maisProdutos").fadeIn();
+                    }
+                }
+                else{
+                    $("#listRes").html('<span style="margin:0 auto; width:100%; text-align:center;">'+ data.message +'</span>');
+                }
+            }
+
+        });
+    }
+
+    function loadCategorias() {
+        $.ajax({
+            type: "POST",
+            url: "/Categoria/Listar",
+            dataType: 'json',
+            processData: true,
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    $("#categoriaContent").append(data.html);
+                }
+                else {
+                    $("#categoriaContent").append(data.message);
+                }
+            }
+
+        });
+    }
+
+    function setFilter(cat) {
+        categoria = cat;
+        page = 1;
+        itens = 10;
+        $("#listRes").html('<span style="margin:0 auto; width:100%; text-align:center;">Aguarde...</span>');
+        loadMore();
+    }
+
+    window.onload = function () {
+        loadMore();
+        loadCategorias();
+    };
+</script>
+

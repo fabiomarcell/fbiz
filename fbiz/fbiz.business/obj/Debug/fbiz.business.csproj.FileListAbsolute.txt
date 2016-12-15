@@ -1,0 +1,15 @@
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.business.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.business.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\EntityFramework.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.dataAccess.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.model.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.dataAccess.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.model.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\EntityFramework.xml
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\obj\Debug\fbiz.business.csprojResolveAssemblyReference.cache
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\obj\Debug\fbiz.business.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\obj\Debug\fbiz.business.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.repository.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.business\bin\Debug\fbiz.repository.pdb

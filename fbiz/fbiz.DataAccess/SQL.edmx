@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fbizModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="categoriaID" />
+          </Key>
+          <Property Name="categoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="200" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="ativo" Type="bit" />
+        </EntityType>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="comentarioID" />
+          </Key>
+          <Property Name="comentarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="produtoID" Type="int" />
+          <Property Name="nome" Type="nvarchar" MaxLength="200" />
+          <Property Name="titulo" Type="nvarchar" MaxLength="200" />
+          <Property Name="descricao" Type="nvarchar(max)" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="ativo" Type="bit" />
+        </EntityType>
+        <EntityType Name="produto">
+          <Key>
+            <PropertyRef Name="produtoID" />
+          </Key>
+          <Property Name="produtoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoriaID" Type="int" />
+          <Property Name="nome" Type="nvarchar" MaxLength="200" />
+          <Property Name="descricao" Type="nvarchar(max)" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="ativo" Type="bit" />
+        </EntityType>
+        <Association Name="FK__comentari__produ__15502E78">
+          <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="produtoID" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="produtoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__produto__categor__145C0A3F">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="produto" Type="Self.produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="categoriaID" />
+            </Principal>
+            <Dependent Role="produto">
+              <PropertyRef Name="categoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fbizModelStoreContainer">
+          <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comentario" EntityType="Self.comentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="produto" EntityType="Self.produto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__comentari__produ__15502E78" Association="Self.FK__comentari__produ__15502E78">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__produto__categor__145C0A3F" Association="Self.FK__produto__categor__145C0A3F">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="produto" EntitySet="produto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fbizModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="categoriaID" />
+          </Key>
+          <Property Name="categoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="ativo" Type="Boolean" />
+          <NavigationProperty Name="produto" Relationship="Self.FK__produto__categor__145C0A3F" FromRole="categoria" ToRole="produto" />
+        </EntityType>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="comentarioID" />
+          </Key>
+          <Property Name="comentarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="produtoID" Type="Int32" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="ativo" Type="Boolean" />
+          <NavigationProperty Name="produto" Relationship="Self.FK__comentari__produ__15502E78" FromRole="comentario" ToRole="produto" />
+        </EntityType>
+        <EntityType Name="produto">
+          <Key>
+            <PropertyRef Name="produtoID" />
+          </Key>
+          <Property Name="produtoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoriaID" Type="Int32" />
+          <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="ativo" Type="Boolean" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK__produto__categor__145C0A3F" FromRole="produto" ToRole="categoria" />
+          <NavigationProperty Name="comentario" Relationship="Self.FK__comentari__produ__15502E78" FromRole="produto" ToRole="comentario" />
+        </EntityType>
+        <Association Name="FK__produto__categor__145C0A3F">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="produto" Type="Self.produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="categoriaID" />
+            </Principal>
+            <Dependent Role="produto">
+              <PropertyRef Name="categoriaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__comentari__produ__15502E78">
+          <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="produtoID" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="produtoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fbizEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categoria" EntityType="Self.categoria" />
+          <EntitySet Name="comentario" EntityType="Self.comentario" />
+          <EntitySet Name="produto" EntityType="Self.produto" />
+          <AssociationSet Name="FK__produto__categor__145C0A3F" Association="Self.FK__produto__categor__145C0A3F">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="produto" EntitySet="produto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__comentari__produ__15502E78" Association="Self.FK__comentari__produ__15502E78">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fbizModelStoreContainer" CdmEntityContainer="fbizEntities">
+          <EntitySetMapping Name="categoria">
+            <EntityTypeMapping TypeName="fbizModel.categoria">
+              <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comentario">
+            <EntityTypeMapping TypeName="fbizModel.comentario">
+              <MappingFragment StoreEntitySet="comentario">
+                <ScalarProperty Name="comentarioID" ColumnName="comentarioID" />
+                <ScalarProperty Name="produtoID" ColumnName="produtoID" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produto">
+            <EntityTypeMapping TypeName="fbizModel.produto">
+              <MappingFragment StoreEntitySet="produto">
+                <ScalarProperty Name="produtoID" ColumnName="produtoID" />
+                <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

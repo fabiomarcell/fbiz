@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fbizModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="categoriaID" />
+    </Key>
+    <Property Name="categoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="nvarchar" MaxLength="200" />
+    <Property Name="dataCadastro" Type="datetime" />
+    <Property Name="ativo" Type="bit" />
+  </EntityType>
+  <EntityType Name="comentario">
+    <Key>
+      <PropertyRef Name="comentarioID" />
+    </Key>
+    <Property Name="comentarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="produtoID" Type="int" />
+    <Property Name="nome" Type="nvarchar" MaxLength="200" />
+    <Property Name="titulo" Type="nvarchar" MaxLength="200" />
+    <Property Name="descricao" Type="nvarchar(max)" />
+    <Property Name="dataCadastro" Type="datetime" />
+    <Property Name="ativo" Type="bit" />
+  </EntityType>
+  <EntityType Name="produto">
+    <Key>
+      <PropertyRef Name="produtoID" />
+    </Key>
+    <Property Name="produtoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoriaID" Type="int" />
+    <Property Name="nome" Type="nvarchar" MaxLength="200" />
+    <Property Name="descricao" Type="nvarchar(max)" />
+    <Property Name="dataCadastro" Type="datetime" />
+    <Property Name="ativo" Type="bit" />
+  </EntityType>
+  <Association Name="FK__comentari__produ__15502E78">
+    <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
+    <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="produtoID" />
+      </Principal>
+      <Dependent Role="comentario">
+        <PropertyRef Name="produtoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__produto__categor__145C0A3F">
+    <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+    <End Role="produto" Type="Self.produto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoria">
+        <PropertyRef Name="categoriaID" />
+      </Principal>
+      <Dependent Role="produto">
+        <PropertyRef Name="categoriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="fbizModelStoreContainer">
+    <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comentario" EntityType="Self.comentario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="produto" EntityType="Self.produto" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__comentari__produ__15502E78" Association="Self.FK__comentari__produ__15502E78">
+      <End Role="produto" EntitySet="produto" />
+      <End Role="comentario" EntitySet="comentario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__produto__categor__145C0A3F" Association="Self.FK__produto__categor__145C0A3F">
+      <End Role="categoria" EntitySet="categoria" />
+      <End Role="produto" EntitySet="produto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

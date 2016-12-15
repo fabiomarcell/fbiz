@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fbizModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="categoriaID" />
+    </Key>
+    <Property Name="categoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+    <Property Name="ativo" Type="Boolean" />
+    <NavigationProperty Name="produto" Relationship="Self.FK__produto__categor__145C0A3F" FromRole="categoria" ToRole="produto" />
+  </EntityType>
+  <EntityType Name="comentario">
+    <Key>
+      <PropertyRef Name="comentarioID" />
+    </Key>
+    <Property Name="comentarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="produtoID" Type="Int32" />
+    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+    <Property Name="ativo" Type="Boolean" />
+    <NavigationProperty Name="produto" Relationship="Self.FK__comentari__produ__15502E78" FromRole="comentario" ToRole="produto" />
+  </EntityType>
+  <EntityType Name="produto">
+    <Key>
+      <PropertyRef Name="produtoID" />
+    </Key>
+    <Property Name="produtoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoriaID" Type="Int32" />
+    <Property Name="nome" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+    <Property Name="ativo" Type="Boolean" />
+    <NavigationProperty Name="categoria" Relationship="Self.FK__produto__categor__145C0A3F" FromRole="produto" ToRole="categoria" />
+    <NavigationProperty Name="comentario" Relationship="Self.FK__comentari__produ__15502E78" FromRole="produto" ToRole="comentario" />
+  </EntityType>
+  <Association Name="FK__produto__categor__145C0A3F">
+    <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+    <End Role="produto" Type="Self.produto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoria">
+        <PropertyRef Name="categoriaID" />
+      </Principal>
+      <Dependent Role="produto">
+        <PropertyRef Name="categoriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__comentari__produ__15502E78">
+    <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
+    <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="produtoID" />
+      </Principal>
+      <Dependent Role="comentario">
+        <PropertyRef Name="produtoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="fbizEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categoria" EntityType="Self.categoria" />
+    <EntitySet Name="comentario" EntityType="Self.comentario" />
+    <EntitySet Name="produto" EntityType="Self.produto" />
+    <AssociationSet Name="FK__produto__categor__145C0A3F" Association="Self.FK__produto__categor__145C0A3F">
+      <End Role="categoria" EntitySet="categoria" />
+      <End Role="produto" EntitySet="produto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__comentari__produ__15502E78" Association="Self.FK__comentari__produ__15502E78">
+      <End Role="produto" EntitySet="produto" />
+      <End Role="comentario" EntitySet="comentario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

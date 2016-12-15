@@ -1,0 +1,14 @@
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\obj\Debug\fbiz.repository.csprojResolveAssemblyReference.cache
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\fbiz.repository.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\fbiz.repository.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\EntityFramework.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\fbiz.dataAccess.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\fbiz.model.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\fbiz.dataAccess.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\fbiz.model.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\EntityFramework.xml
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\obj\Debug\fbiz.repository.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\obj\Debug\fbiz.repository.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.repository\bin\Debug\fbiz.repository.dll.config

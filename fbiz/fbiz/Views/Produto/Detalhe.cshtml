@@ -1,0 +1,124 @@
+﻿@model fbiz.model.Produto
+
+@{
+    ViewBag.Title = "Produto: " + @Model.nome;
+}
+
+
+<section id="to-do" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Detalhe do Produto - @Model.nome</h2>
+            </div>
+        </div>
+        <div class="row" id="">
+
+            <div class="col-md-4 col-sm-6 to-do-item">
+                <div class="to-do-caption">
+                    <h4>@Model.nome</h4>
+                    <h4>@Model.categoria.nome</h4>
+                    <p class="text-muted">@Html.Raw(@Model.descricao)</p>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <p class="text-muted pull-center" style="margin-right:20px;">@Model.dataCadastro</p>
+                    <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                    <a href="/Index/Categoria/@Model.categoriaID">Ver Mais Dessa Categoria!</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 to-do-item">
+                <div class="to-do-caption" id="listRes">
+                    <h4>Comentarios!</h4>
+                    <br />
+                    <span>Aguarde...</span>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 to-do-item">
+                <div class="to-do-caption">
+                    <form action="Comentario/Cadastrar" method="post" id="formComentario" onsubmit="sendForm(); return false;">
+                        <span id="err"></span>
+                        <h4>Inserir Comentário</h4>
+                        <br />
+                        <input type="text" name="autor" id="autor" placeholder="Autor" class="form-control" required />
+                        <input type="hidden" name="produtoID" id="produtoID" value="@Model.produtoID"/>
+                        <br />
+                        <input type="text" name="titulo" id="titulo" placeholder="Titulo do comentário" class="form-control" required />
+                        <hr />
+                        <textarea name="descricao" id="descricao" placeholder="Descrição do comentário" class="form-control" required></textarea>
+                        <br />
+                        <button type="submit" class="btn btn-xl col-md-12">
+                            Cadastrar
+                        </button>
+                    </form>
+                    <div class="clearfix"></div>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <br />
+
+        
+        
+    </div>
+</section>
+<script>
+    function loadComentarios() {
+        $.ajax({
+            type: "POST",
+            url: "/Comentario/Listar",
+            dataType: 'json',
+            data: {
+                id: @Model.produtoID
+                },
+            processData: true,
+            success: function (data) {
+                console.log(data);
+                if (data.status) {
+                    $("#listRes span").html("");
+                    $("#listRes").html(data.html);
+                    //$("#page").html(data.page);
+                }
+            }
+
+        });
+    }
+
+    function cadastrarComentario() {
+        $.ajax({
+            type: "POST",
+            url: "/Comentario/Cadastrar",
+            dataType: 'json',
+            data: $("#formComentario").serialize(),
+            processData: true,
+            success: function (data) {
+                console.log(data);
+                console.log(data.status);
+                if (data.status == "true") {
+                    $("#formComentario")[0].reset();
+                    return true;
+               }
+                else{
+                    $("#err").html(data.message);
+                    return false;
+                }
+            }
+
+        });
+    }
+
+    function sendForm(){
+        var status = cadastrarComentario();
+        setTimeout(function(){ loadComentarios(); }, 1000);
+    }
+
+    window.onload = function () {
+        loadComentarios();
+    };
+</script>

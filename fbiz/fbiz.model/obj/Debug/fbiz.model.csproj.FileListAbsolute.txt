@@ -1,0 +1,5 @@
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.model\bin\Debug\fbiz.model.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.model\bin\Debug\fbiz.model.pdb
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.model\obj\Debug\fbiz.model.csprojResolveAssemblyReference.cache
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.model\obj\Debug\fbiz.model.dll
+C:\Users\Fabio Marcell\Desktop\fbiz\fbiz\fbiz.model\obj\Debug\fbiz.model.pdb
